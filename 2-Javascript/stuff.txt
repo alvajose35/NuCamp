@@ -1,0 +1,5 @@
+https://github.com/oyepriyansh/DevProfiles/blob/main/CONTRIBUTING.md
+
+git config --get remote.origin.url
+git log --oneline
+git log
