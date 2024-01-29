@@ -6,23 +6,53 @@ function runGame() {
 	let guessNumber = 0;
 	let correct = false;
 	let numTries = 0;
+	let guessArr = [];
+	let playAgain = false;
 
 	//Console log the random number
-	console.log(target);
-	
+	console.log (target);
+
 	//Main game loop
 	do {
-		guessString = prompt("I'm thinking of a number in the range 1 to 100.\n\nWhat is the number?");
-		if (guessString === null) {
-        	return;
-        }
+
+		//Ask user for a guess
+		guessString = prompt("I'm thinking of a number in the range 1 to 100.\n\nYour previous guesses: " + guessArr.join(" || ") + "\n\nWhat is the number?");
+
+		//Add guess to array
+		guessArr.push(guessString);
+
+		//Check to see if 'Cancel' was pressed
+		if (guessString == null) {
+			let conf = false;
+			conf = confirm("Are you sure you want to exit the game?");
+			if (conf) {
+				return;
+			}
+			else {
+				guessArr = [];
+				numTries--;
+			}
+		}
+
+		console.log(guessString);
 		guessNumber = +guessString;
+
+		//Update the number of tried guesses
 		numTries += 1;
+
+		
+
+		//Validate and check the input function
 		correct	= checkGuess(guessNumber, target);
+
 	} while (!correct);
 
-	alert("You got it!! The number was " + target + ".\n\nIt took you " + numTries + " tries to guess correctly.");
+	//Game won prompt
+	alert("You got it!! The number was " + target + ".\n\nIt took you " + numTries + " tries to guess correctly.\n\nYour previous guesses: " + guessArr.join(" || "));
 
+	//Ask player if he wants to play again
+	playAgain = confirm("Do you want to play again?");
+	playAgain ? runGame() : 0 ;
 }
 
 function checkGuess (guessNumber, target) {
@@ -47,3 +77,8 @@ function checkGuess (guessNumber, target) {
 
 	return correct;
 }
+
+// Andrew Kennedy
+// Henry Ramirez
+// Michael Cazares
+// Jose
