@@ -1,11 +1,16 @@
 function runGame() {
 
+	//Declare variables
 	const target = Math.floor(Math.random() * 100) + 1;
 	let guessString = "";
 	let guessNumber = 0;
 	let correct = false;
 	let numTries = 0;
 
+	//Console log the random number
+	console.log(target);
+	
+	//Main game loop
 	do {
 		guessString = prompt("I'm thinking of a number in the range 1 to 100.\n\nWhat is the number?");
 		if (guessString === null) {
