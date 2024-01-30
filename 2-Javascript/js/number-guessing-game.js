@@ -29,7 +29,7 @@ function runGame() {
 				return;
 			}
 			else {
-				guessArr = [];
+				guessArr.pop();
 				numTries--;
 			}
 		}
@@ -77,8 +77,3 @@ function checkGuess (guessNumber, target) {
 
 	return correct;
 }
-
-// Andrew Kennedy
-// Henry Ramirez
-// Michael Cazares
-// Jose

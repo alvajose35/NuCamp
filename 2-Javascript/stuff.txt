@@ -1,5 +1,12 @@
 https://github.com/oyepriyansh/DevProfiles/blob/main/CONTRIBUTING.md
 
+https://pastebin.com/fynZTXwt
+
 git config --get remote.origin.url
 git log --oneline
 git log
+
+// Andrew Kennedy
+// Henry Ramirez
+// Michael Cazares
+// Jose
