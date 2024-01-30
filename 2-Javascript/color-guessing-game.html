@@ -9,36 +9,63 @@
     <h1>Color Guessing Game</h1>
     <button type="button" onclick="runGame()">Start Game</button>
     
-    
     <script>
+        //Main colors array
         const COLORS_ARRAY = ['blue', 'cyan', 'gold', 'gray', 'green', 'magenta', 'orange', 'red', 'white', 'yellow'];
 
         function runGame() {
+
+            //Declare variables
             let guess = "";
             let correct = false;
             const targetIndex = Math.floor(Math.random() * COLORS_ARRAY.length);
             const target = COLORS_ARRAY[targetIndex];
             let numTries = 0;
+            let guessArr = [];
+            let playAgain = false;
 
+            //Console log the correct answer
             console.log(target);
 
+            //Main game loop
             do {
-                guess = prompt("I am thinking of one of these colors:\n\n" + COLORS_ARRAY + "\n\nWhat color am I thinking of?\n");
+
+                //Ask user for a guess
+                guess = prompt("I'm thinking of one of these colors:\n" + COLORS_ARRAY.join(", ") + "\n\nNumber of tries: " + numTries + "\nYour previous guesses: " + guessArr.sort().join(" || ") + "\n\nWhat color am I thinking of?");
                 
+                //Add guess to array
+                console.log(guess);
+                guessArr.push(guess);
+
+                //Check to see if 'Cancel' was pressed
                 if (guess == null) {
-                    alert("Canceling the game.");
-                    return;
+                    let conf = false;
+                    conf = confirm("Are you sure you want to exit the game?");
+                    if (conf) {
+                        return;
+                    }
+                    else {
+                        guessArr.pop();
+                        numTries--;
+                        guess = "";
+                    }
                 }
 
-                correct = checkGuess(guess.toLocaleLowerCase(), target);
-                
+                //Update the number of tried guesses
                 numTries++;
+
+                //Call function to validate and check input
+                correct = checkGuess(guess.toLowerCase(), target);         
 
             } while (!correct);
 
-            alert("Congrats!! You won the game. It took you " + numTries + " guesses.");
+            //Game won prompt
+            alert("Congrats!! You guess the right color.\n\nIt took you " + numTries + " tries to guess correctly.\nYour guesses: " + guessArr.sort().join(" || ") + "\n\nTo celebrate, we will update the backgorund with the guessed color!!");
             document.body.style.background = guess;
-            
+
+            //Ask player if he wants to play again
+            playAgain = confirm("Do you want to play again?");
+            playAgain ? runGame() : 0 ;
         }
 
         function checkGuess(guess, target) {
@@ -54,14 +81,15 @@
             else if (guess < target) {
                 alert("Your guess is not correct. Your color is lower than mine.");
             }
+            // else if (guess == )
             else {
                 correct = true;
             }
 
             return correct;
-        } 
-
+        }
 
     </script>
+
 </body>
 </html>

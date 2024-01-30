@@ -19,6 +19,7 @@ function runGame() {
 		guessString = prompt("I'm thinking of a number in the range 1 to 100.\n\nYour previous guesses: " + guessArr.join(" || ") + "\n\nWhat is the number?");
 
 		//Add guess to array
+		console.log(guessString);
 		guessArr.push(guessString);
 
 		//Check to see if 'Cancel' was pressed
@@ -34,15 +35,11 @@ function runGame() {
 			}
 		}
 
-		console.log(guessString);
-		guessNumber = +guessString;
-
 		//Update the number of tried guesses
 		numTries += 1;
 
-		
-
 		//Validate and check the input function
+		guessNumber = +guessString;
 		correct	= checkGuess(guessNumber, target);
 
 	} while (!correct);
