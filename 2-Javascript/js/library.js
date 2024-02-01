@@ -10,13 +10,13 @@ const library = {
 
 	books: [],
 
-	addBook: function (title, author) {
+	addBook(title, author) {
 		let buch = new Book (title, author);
 		this.books.push(buch);
 		console.log(`Successfully added "${buch.title}" by ${buch.author} to the library! There are now ${this.books.length} books in the DB.`);
 	},
 
-	checkOutBook: function (title) {
+	checkOutBook(title) {
 		try {
 			let found = false;
 			for (let libro of this.books) {
@@ -39,7 +39,7 @@ const library = {
 		}
 	},
 
-	getAvailableBooks: function () {
+	getAvailableBooks() {
 		let avBooks = [];
 		for (let buchen of this.books){
 			if (buchen.avialable) {
@@ -51,7 +51,7 @@ const library = {
 		console.table(avBooks);
 	},
 
-	getAllBooks: function () {
+	getAllBooks() {
 		console.log(`There are currently ${this.books.length} total books. The books are:`);
 		console.table(this.books);
 	}
