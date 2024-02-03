@@ -10,3 +10,17 @@ git log
 // Henry Ramirez
 // Michael Cazares
 // Jose
+
+WEEK #3 QUESTIONS
+
+Default function parameters:
+Let's say I make a functions with two parameters. Both of this parameters have default values assigned. How can I call this function, specify only the second parameter and let the first parameter be the default one?
+
+Why dont I have to use return throw error for errorsthat are called in onther function?
+
+===================
+if(studentToRegister.name === undefined || studentToRegister.email === undefined)
+
+with truthy/falsy:
+if(!studentToRegister.name || !studentToRegister.email )
+===================
