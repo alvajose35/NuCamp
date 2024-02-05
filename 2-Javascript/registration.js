@@ -3,6 +3,10 @@ class Student {
 		this.name = name;
 		this.email = email;
 	}
+
+	getinfo() {
+		console.log(`The student ${this.name} email is ${this.email}`);
+	}
 }
 
 class Bootcamp {
@@ -24,12 +28,17 @@ class Bootcamp {
 		else {
 		// console.log("Inside first else");
 
-			for (let std of this.students){
-				if (studentToRegister.email === std.email) {
-					console.log(`Email is already registered.`);
-					return false;
-				}
+
+			if (this.students.find(item => item.email == studentToRegister.email) != undefined) {
+				console.log(`Email is already registered. (find method)`);
+				return false;
 			}
+			// for (let std of this.students){
+			// 	if (studentToRegister.email === std.email) {
+			// 		console.log(`Email is already registered.`);
+			// 		return false;
+			// 	}
+			// }
 			this.students.push(studentToRegister);
 			console.log(`Successfully registered ${studentToRegister.name} in ${this.name} bootcamp.`);
 			return true;
@@ -47,6 +56,48 @@ class Bootcamp {
 			for(let stud of this.students) {
 				console.log(`Name: ${stud.name}  Email: ${stud.email}`);
 			}
+			return true;
+		}
+	}
+
+	getinfo() {
+		console.log(`This bootcamp name is "${this.name}" and it's level is "${this.level}".`);
+	}
+
+	removeStudent(email) {
+		// for (let student of this.students) {
+		// 	console.log(email);
+		// 	if (student.email === email) {
+		// 		console.log("here");
+		// 		let index =  this.students
+		// 		// this.students.splice(i, 1);
+		// 		console.log(`Successfully removed ${student.name} with the email ${student.email}.`);
+		// 		return true;
+		// 	}
+		// }
+
+		for (let x in this.students) {
+			if (this.students[x].email === email) {
+				console.log(`Successfully removed ${this.students[x].name} with the email ${this.students[x].email}.`);
+				this.students.splice(x, 1);
+				return true;
+			}
+		}
+
+
+		// if (this.students.email.includes(email))
+		
+		console.log(`ERROR: No student with the email ${email} found.`);
+	}
+
+	listStudentsTable() {
+		if (this.students.length === 0) {
+			console.log(`No students are registered to the ${this.name} bootcamp.`);
+			return false;
+		}
+		else {
+			console.log(`The students registered in ${this.name} are:`);
+			console.table(this.students);
 			return true;
 		}
 	}
@@ -90,10 +141,49 @@ const runTest = (bootcamp, student) => {
     if (bootcamp.listStudents()) {
         console.log("TASK 4: PASS 1/2");
     }
-    bootcamp.students = [];
-    if (!bootcamp.listStudents()) {
-        console.log("TASK 4: PASS 2/2");
-    }
+    // bootcamp.students = [];
+    // if (!bootcamp.listStudents()) {
+    //     console.log("TASK 4: PASS 2/2");
+    // }
 };
 
 runTest(reactBootcamp, testStudent);
+
+console.log("BONUS TASKS");
+reactBootcamp.getinfo();
+reactBootcamp.listStudentsTable();
+//test remove student
+reactBootcamp.removeStudent("bafgh@bunny.com");
+reactBootcamp.removeStudent("babs@bunny.com");
+
+reactBootcamp.listStudents();
+testStudent.getinfo();
+
+// TRY TO USE AN API TO FETCH A BUNCH OF RANDOM WORDS TO USE AS NEW STUDENTS BUT 
+// APPARENTLY NUCAMP HAD US INSTALLED NODE V16.13.2 AND IT IS NOT UNTIL NODE V18 
+// THAT FETCH WAS ADDED
+
+// async function fetchWord() {
+// 	const word = await fetch(
+// 		"https://random-word-api.herokuapp.com/word?number=20"
+// 	).then((response) => response.text());
+// 	console.log(word);
+// }
+// fetchWord();
+
+let jsonArr = ["debased","pizzles","assegaied","stormed","typographed","pinta","bennes","edgers","waterfalls","fearing","morphallaxis","untrusses","poultryman","bethesda","perionychium","computerizes","wartier","refraction","hermes","theodicies"];
+console.log(jsonArr.length);
+for (let i = 0; i < jsonArr.length; i+=2) {
+	
+	let newName = jsonArr[i] + " " + jsonArr[i+1];
+	let newEmail = jsonArr[i] + "." + jsonArr[i+1] + "@bunny.com";
+
+	console.log(newName);
+	console.log(newEmail);
+
+	reactBootcamp.registerStudent(new Student(newName, newEmail));
+
+}
+
+reactBootcamp.listStudentsTable();
+

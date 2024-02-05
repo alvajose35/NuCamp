@@ -73,8 +73,17 @@
 		let heroes = [hero2, batman];
 		console.log(JSON.stringify(heroes));
 		}
-
 		fetchHero();
+
+		// EXTRA Random-Word API
+		async function fetchWord() {
+		const word = await fetch(
+		"https://random-word-api.herokuapp.com/word?number=20"
+		).then((response) => response.text());
+
+		console.log(word);
+		}
+		fetchWord();
 
 	</script>
 
