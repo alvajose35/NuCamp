@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping List App</title>
+    <style>
+        ul {
+            list-style-type: "\2610 ";
+            cursor: pointer;
+        }
+
+		@media print {
+			#myForm {
+				display: none;
+			}
+			#printButton {
+				display: none;
+			}
+		}
+    </style>
+</head>
+<body>
+    <h1>My Shopping List</h1>
+    <form id="myForm">
+        <label for="item">Add an item:</label>
+        <input id="item" type="text" name="item">
+        <button onclick="getItem()">Add</button>
+    </form>
+    <ul id="shoppingList">
+        <!-- list items will go into this ul via DOM manipulation -->
+    </ul>
+
+	<button type="button" id="printButton">Print List</button>
+
+	<!-- <script>
+		const listArray = [];
+		const shoppingList = document.getElementById("shoppingList");
+
+		function getItem() {
+			event.preventDefault();
+			try {
+				const item = document.getElementById("item").value;
+				if (item === "") {
+					throw new SyntaxError("Form is currently empty");
+				}			
+				
+				if (!listArray.includes(item)) {
+					listArray.push(item);
+					listArray.sort();
+				}
+				console.log(listArray);
+
+				removeList();
+				makeList();
+				
+				document.getElementById("myForm").reset();
+			} 
+			catch (error) {
+				console.error(error);				
+			}
+		}
+
+		function makeList() {
+			for (let ittem of listArray) {
+				listItem = document.createElement('li');
+				listItem.textContent = ittem;
+				listItem.addEventListener("click", removeItem);
+				shoppingList.appendChild(listItem);
+			}
+		}
+
+		function removeList() {
+			while (shoppingList.firstChild){
+				shoppingList.removeChild(shoppingList.firstChild);
+			}
+		}
+
+		function removeItem(event) {
+			try {
+				const item = event.currentTarget.textContent;
+				let index = listArray.indexOf(item);
+				if (index === -1) {
+					throw new Error(`The item ${item} was not in the list.`);		
+				}
+				listArray.splice(index, 1);
+				
+				console.log(listArray);
+
+				removeList();
+				makeList();
+			} catch (error) {
+				console.error(error);				
+			}
+			
+		}
+
+	</script> -->
+    <script src="js/shopping-list.js"></script>
+</body>
+</html>
