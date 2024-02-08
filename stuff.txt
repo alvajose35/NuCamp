@@ -24,3 +24,5 @@ if(studentToRegister.name === undefined || studentToRegister.email === undefined
 with truthy/falsy:
 if(!studentToRegister.name || !studentToRegister.email )
 ===================
+
+https://pastebin.com/g9u2zUDR
