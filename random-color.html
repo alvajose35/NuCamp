@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Color Generator</title>
+
+    <style>
+        h1{
+            text-align: center;
+        }
+        #colorBtn{
+            background-color: lightblue;
+        }
+        #container {
+            height: 500px;
+            width: 500px;
+            border: solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        Rand'O'Colors
+    </h1>
+    <p>Here is my take at a random color generator.</p>
+
+    <button id="colorBtn">Change Color</button>
+    <button id="resetBtn">Reset Color</button>
+    <br><br><br>
+    <div id="container">Color Code: <span id="colorCode">#FFFFFF</span></div>
+
+    <script>
+
+        // Assign DOM elements to variables
+        const colorBtnEL = document.getElementById('colorBtn');
+        const resetBtnEL = document.getElementById('resetBtn');
+        const containerEL = document.getElementById('container');
+        const colorCodeEL = document.getElementById('colorCode');
+
+        // Event Listeners
+        colorBtnEL.addEventListener('mouseover', () => {colorBtnEL.style.backgroundColor = 'lightgreen';});
+        colorBtnEL.addEventListener('mouseout', () => {colorBtnEL.style.backgroundColor = 'lightblue';});
+        colorBtnEL.addEventListener('click', () => {
+            containerEL.style.backgroundColor = randHex();
+            colorCodeEL.innerText = randHex();
+        });
+        resetBtnEL.addEventListener('click', () => {
+            containerEL.style.backgroundColor = '#FFFFFF';
+            colorCodeEL.innerText = '#FFFFFF';
+        });
+        
+        
+
+        function randHex() {
+            const hexValues = '0123456789ABCDEF';
+            let color = '#';
+
+            for (let i = 0; i < 6; i++) {
+                color += hexValues[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+
+    </script>
+    
+</body>
+</html>
