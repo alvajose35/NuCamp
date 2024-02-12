@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Matching Game</title>
+
+	<style>
+		img {
+			position: absolute;
+		}
+		div {
+			position: absolute;
+			width: 500px;
+			height: 500px;
+			background-color: #c5e2ff;
+		}
+		#rightSide {
+			left: 500px;
+			border-left: 2px solid;
+		}
+	</style>
+</head>
+<body>
+	<h1>Matching Game</h1>
+	<p>Click on the extra smiling face on the left.</p>
+
+	<div id="leftSide"></div>
+	<div id="rightSide"></div>
+
+	<script>
+		// Execute main function on window load
+		window.addEventListener('load', generateFaces);
+
+		// Declare variables and assign DOM elements
+		let numberOfFaces = 5;
+		let playAgain = false;
+		const theLeftSide = document.querySelector('#leftSide');
+		const theRightSide = document.querySelector('#rightSide');
+
+
+		function generateFaces() {
+
+			// Generate X faces. Attach them to the left side
+			for (let i = 0; i < numberOfFaces; i++) {
+				let face = document.createElement("img");
+				face.src = 'smile.png';
+
+				let randomTop = Math.floor(Math.random() * 400) + 1;
+				let randomLeft = Math.floor(Math.random() * 400) + 1;
+
+				face.style.top = randomTop + 'px';
+				face.style.left = randomLeft + 'px';
+
+				theLeftSide.appendChild(face);
+			}
+
+			// Clone and create the right side
+			const leftSideImages = theLeftSide.cloneNode(true);
+			leftSideImages.removeChild(leftSideImages.lastChild);
+			theRightSide.appendChild(leftSideImages);
+
+			// Add mouse click event listeners to the elements
+			theLeftSide.lastChild.addEventListener('click', nextLevel);
+			document.body.addEventListener('click', gameOver);
+		}
+
+		function nextLevel(event) {
+			event.stopPropagation();
+
+			// Level up the game
+			numberOfFaces += 5;
+			
+			// Remove all previous faces
+			while (theLeftSide.firstChild) {
+				theLeftSide.removeChild(theLeftSide.firstChild);
+            }
+			while (theRightSide.firstChild) {
+				theRightSide.removeChild(theRightSide.firstChild);
+            }
+
+			// Re-generate game
+			generateFaces();
+		}
+
+		function gameOver() {
+
+			// Remove all event listeners
+			theLeftSide.lastChild.removeEventListener('click', nextLevel);
+			document.body.removeEventListener('click', gameOver);
+
+			//Ask player if he wants to play again
+            playAgain = confirm("Game over!\n\nDo you want to play again?");
+            playAgain ? location.reload() : 0 ;
+		}
+	</script>
+</body>
+</html>

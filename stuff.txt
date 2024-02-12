@@ -28,3 +28,9 @@ if(!studentToRegister.name || !studentToRegister.email )
 https://pastebin.com/g9u2zUDR
 
 https://stackoverflow.com/questions/8191459/how-do-i-update-node-js
+
+What if a script references itself in the DOM and deletes itself?
+
+With whitespace Nodes. wouldn't that cause errors at the time of publishing if it minimizes the HTML file.
+
+console.dir(document) 
