@@ -34,3 +34,5 @@ What if a script references itself in the DOM and deletes itself?
 With whitespace Nodes. wouldn't that cause errors at the time of publishing if it minimizes the HTML file.
 
 console.dir(document) 
+
+&apikey=7205054c
