@@ -2,6 +2,7 @@
 const message = 'your phone number is contained somewhere in the digits of Pi';
 const surprisedReaction = () => console.log(':o');
 const smoothReaction = () => console.log('B)');
+const emojiReaction = () => console.log('☕');
 const saySomethingAndReact = (msg = 'you forgot to submit a message') => {
     console.log(msg);
     return (reaction) => {
@@ -10,4 +11,6 @@ const saySomethingAndReact = (msg = 'you forgot to submit a message') => {
 };
 
 // add the inputs here
-saySomethingAndReact();
+saySomethingAndReact(message)(smoothReaction);
+saySomethingAndReact(message)(surprisedReaction);
+saySomethingAndReact(message)(emojiReaction);
